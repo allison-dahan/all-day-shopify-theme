@@ -1,0 +1,37 @@
+/* ───────────────────────────────
+   ALL DAY — Custom Theme Styles
+   ─────────────────────────────── */
+   :root {
+    --brand-charcoal: #1A1A1A;
+    --brand-gray: #EDEDED;
+    --brand-beige: #F3E4CF;
+    --brand-sage: #D7E4D0;
+    --brand-sage-hover: #C5D5B8;
+    --brand-warm-white: #F9F8F6;
+  }
+  
+  body {
+    font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    color: var(--brand-charcoal);
+    background-color: var(--brand-gray);
+    line-height: 1.6;
+  }
+
+  /* Hero Banner */
+
+  .ad-hero {
+    display: grid; place-items: center;
+    min-height: 70vh;
+    background-color: var(--brand-sage);
+    text-align: center; padding: 4rem 1rem;
+  }
+  .ad-hero h1 { font-size: clamp(2rem,4vw,3rem); font-weight:700; color: var(--brand-charcoal); }
+  .ad-hero p { max-width: 600px; margin: 1rem auto 2rem; color: rgba(26,26,26,0.8); }
+  .ad-btn {
+    display: inline-block; padding: 0.9rem 2rem;
+    background: var(--brand-charcoal); color: #fff;
+    border-radius: 6px; font-weight:600; text-decoration:none;
+    transition: background .25s ease;
+  }
+  .ad-btn:hover { background: #333; }
+  
