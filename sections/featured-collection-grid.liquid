@@ -1,0 +1,50 @@
+<section class="ad-collection-grid page-width">
+  {% if section.settings.heading != blank %}
+    <h2 class="ad-grid__title">{{ section.settings.heading }}</h2>
+  {% endif %}
+
+  {% assign col = section.settings.collection %}
+  {% if col and col.products_count > 0 %}
+    <ul class="ad-grid" role="list">
+      {% for product in col.products limit: section.settings.products_to_show %}
+        <li class="ad-grid__item">
+          {%- if product.featured_image -%}
+            <a href="{{ product.url }}" class="ad-card">
+              {{ product.featured_image | image_url: width: 800 | image_tag: alt: product.title }}
+              <div class="ad-card__body">
+                <h3 class="ad-card__title">{{ product.title }}</h3>
+                <div class="ad-card__price">
+                  {{ product.price | money }}
+                  {% if product.compare_at_price > product.price %}
+                    <span class="ad-card__cap">{{ product.compare_at_price | money }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            </a>
+          {%- endif -%}
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if section.settings.show_view_all and col.url %}
+      <div class="ad-grid__cta">
+        <a class="ad-btn" href="{{ col.url }}">View all</a>
+      </div>
+    {% endif %}
+  {% else %}
+    <p>No products found in this collection.</p>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection grid",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Featured" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 2, "max": 12, "step": 1, "default": 6 },
+    { "type": "checkbox", "id": "show_view_all", "label": "Show “View all” button", "default": true }
+  ],
+  "presets": [{ "name": "Featured collection grid" }]
+}
+{% endschema %}

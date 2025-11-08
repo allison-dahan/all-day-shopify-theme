@@ -1,0 +1,19 @@
+{% if product.metafields.custom.fabric %}
+  <div class="product-specs">
+    <h4>Details</h4>
+    <ul>
+      {% if product.metafields.custom.fabric %}
+        <li><strong>Fabric:</strong> {{ product.metafields.custom.fabric }}</li>
+      {% endif %}
+      {% if product.metafields.custom.fit %}
+        <li><strong>Fit:</strong> {{ product.metafields.custom.fit }}</li>
+      {% endif %}
+      {% if product.metafields.custom.care %}
+        <li><strong>Care:</strong> {{ product.metafields.custom.care }}</li>
+      {% endif %}
+      {% if product.metafields.custom.model_height %}
+        <li><strong>Model Height:</strong> {{ product.metafields.custom.model_height }} cm</li>
+      {% endif %}
+    </ul>
+  </div>
+{% endif %}

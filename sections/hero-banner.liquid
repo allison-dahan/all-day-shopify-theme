@@ -1,20 +1,30 @@
 <section class="ad-hero">
-  <div class="ad-hero-content">
+  <div class="ad-hero__inner page-width">
     <h1>{{ section.settings.heading }}</h1>
-    <p>{{ section.settings.subheading }}</p>
-    <a href="{{ section.settings.button_link }}" class="ad-btn">{{ section.settings.button_label }}</a>
+    {% if section.settings.subheading != blank %}
+      <p class="ad-hero__sub">{{ section.settings.subheading }}</p>
+    {% endif %}
+    {% if section.settings.button_label and section.settings.button_link %}
+      <a class="ad-btn" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+    {% endif %}
   </div>
+  {% if section.settings.bg_image != blank %}
+    <div class="ad-hero__bg">
+      {{ section.settings.bg_image | image_url: width: 2400 | image_tag: loading: 'lazy', alt: section.settings.heading }}
+    </div>
+  {% endif %}
 </section>
 
 {% schema %}
 {
-  "name": "Hero Banner",
+  "name": "Hero banner",
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "Effortless Motion" },
     { "type": "text", "id": "subheading", "label": "Subheading", "default": "Elevated everyday activewear for movement and rest." },
-    { "type": "text", "id": "button_label", "label": "Button Label", "default": "Shop Now" },
-    { "type": "url", "id": "button_link", "label": "Button Link", "default": "/collections/all" }
+    { "type": "url",  "id": "button_link", "label": "Button link", "default": "/collections/all" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop Now" },
+    { "type": "image_picker", "id": "bg_image", "label": "Background image" }
   ],
-  "presets": [{ "name": "Hero Banner" }]
+  "presets": [{ "name": "Hero banner" }]
 }
 {% endschema %}

@@ -17,21 +17,102 @@
     line-height: 1.6;
   }
 
-  /* Hero Banner */
-
-  .ad-hero {
-    display: grid; place-items: center;
-    min-height: 70vh;
-    background-color: var(--brand-sage);
-    text-align: center; padding: 4rem 1rem;
+/* ===== All Day — Hero ===== */
+.ad-hero {
+    position: relative;
+    min-height: 64vh;
+    display: grid;
+    place-items: center;
+    background: var(--brand-sage);
+    overflow: hidden;
   }
-  .ad-hero h1 { font-size: clamp(2rem,4vw,3rem); font-weight:700; color: var(--brand-charcoal); }
-  .ad-hero p { max-width: 600px; margin: 1rem auto 2rem; color: rgba(26,26,26,0.8); }
+  .ad-hero__inner {
+    text-align: center;
+    padding: 4rem 1rem;
+    position: relative;
+    z-index: 2;
+  }
+  .ad-hero h1 {
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--brand-charcoal);
+  }
+  .ad-hero__sub {
+    max-width: 60ch;
+    margin: 12px auto 24px;
+    color: rgba(26, 26, 26, 0.85);
+  }
   .ad-btn {
-    display: inline-block; padding: 0.9rem 2rem;
-    background: var(--brand-charcoal); color: #fff;
-    border-radius: 6px; font-weight:600; text-decoration:none;
-    transition: background .25s ease;
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    border-radius: 6px;
+    background: var(--brand-charcoal);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.15s ease;
   }
-  .ad-btn:hover { background: #333; }
+  .ad-btn:hover {
+    background: #333333;
+    transform: translateY(-1px);
+  }
   
+  /* Background image layer (optional) */
+  .ad-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .ad-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(96%);
+  }
+  /* soft overlay for readability when a bg image is set */
+  .ad-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(249, 248, 246, 0.35),
+      rgba(249, 248, 246, 0.55)
+    );
+    z-index: 1;
+  }
+  
+  /* Mobile tweak */
+  @media (max-width: 640px) {
+    .ad-hero { min-height: 56vh; }
+  }
+  
+   
+  
+  /* For Product Page */
+  .product-specs {
+    background: var(--brand-warm-white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+  }
+  .product-specs h4 { font-weight: 700; margin-bottom: .5rem; }
+  .product-specs li { margin: .25rem 0; }
+
+  /* Featured Collection */
+
+
+  .ad-collection-grid { padding: 3rem 0; }
+.ad-grid__title { font-weight: 700; margin-bottom: 1rem; }
+.ad-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
+@media (max-width: 900px){ .ad-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 600px){ .ad-grid{ grid-template-columns: 1fr; } }
+
+.ad-card { display:block; text-decoration:none; color:inherit; background: var(--brand-warm-white); border-radius:8px; overflow:hidden; }
+.ad-card img { width:100%; height:auto; display:block; }
+.ad-card__body { padding: 12px; }
+.ad-card__title { font-weight:600; margin: 4px 0 6px; }
+.ad-card__price { font-weight:600; }
+.ad-card__cap { margin-left:8px; text-decoration: line-through; opacity:.6; font-weight:400; }
+.ad-grid__cta { margin-top: 1rem; }
